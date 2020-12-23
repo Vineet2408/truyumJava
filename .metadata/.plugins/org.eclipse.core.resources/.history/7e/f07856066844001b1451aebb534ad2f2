@@ -1,0 +1,71 @@
+package com.cognizant.truyum.dao;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
+import java.sql.*;
+import com.cognizant.truyum.model.MenuItem;
+import com.cognizant.truyum.util.DateUtil;
+import com.mysql.jdbc.PreparedStatement;
+import com.mysql.jdbc.ResultSet;
+public class MenuItemDaoSqlImpl
+{
+	static Connection conn;
+	public MenuItemDaoSqlImpl()
+	{
+		conn=ConnectionHandler.getConnection();
+	}
+	public List<MenuItem> getMenuItemListAdmin()
+	{
+		SimpleDateFormat simpleDateFormat=new SimpleDateFormat("dd/MM/yyyy");
+
+		List<MenuItem> list=new ArrayList<>();
+		String query="select * from menu_item";
+		PreparedStatement ps=conn.prepareStatement(query);
+		java.sql.ResultSet rs=query.excuteQuery();
+		while(rs.next())
+		{
+			int id=rs.getInt("product_id");
+			String name=rs.getString("name");
+			float price=rs.getDouble("price");
+			boolean active=((rs.getString("active")).equalsIgnoreCase("yes"))?true:false;
+			String date_of_launch=simpleDateFormat.format(rs.getDate("date_of_launch"));
+			String category=rs.getString("category");
+			boolean freeDelivery=((rs.getString("free_delivery")).equalsIgnoreCase("yes"))?true:false;
+			Date date=(Date) DateUtil.convertToDate(date_of_launch);
+			MenuItem m=new MenuItem((long)id,name,price,active,date,category,freeDelivery);
+			list.add(m);
+		}
+		return list;
+	}
+	
+	public List<MenuItem> getMenuItemListCustomer()
+	{
+		List<MenuItem> list=new ArrayList<>();
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+		String query="select * from menu_items where active=? and date_of_launch < curdate()";
+		PreparedStatement ps=conn.prepareStatement(query);
+		ps.setString(1,"Yes");
+		
+		ResultSet rs=query.excuteQuery();
+		while(rs.next())
+		{
+			
+		}
+		return list;
+	}
+	public MenuItem getMenuItem(long menuItemId)
+	{
+		String query="select * from MenuItem where id=?";
+		PreparedStatement ps=conn.prepareStatement(query);
+		ps.setLong(1,menuItemId);
+		ResultSet rs=ps.excuteQuery();
+	}
+	public void editMenuItem(MenuItem menuItem)
+	{
+		
+	}
+	
+}

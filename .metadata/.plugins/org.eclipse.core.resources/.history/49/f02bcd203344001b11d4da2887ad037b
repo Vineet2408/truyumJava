@@ -1,0 +1,68 @@
+public class MenuItem
+{
+	long id;
+	String name;
+	float price;
+	boolean active;
+	Date dateOfLaunch;
+	String category;
+	boolean freeDelivery;
+	
+	public void setId(long id)
+	{
+		this.id=id;
+	}
+	public void setName(String name)
+	{
+		this.name=name;
+	}
+	public void setPrice(float price)
+	{
+		this.price=price;
+	}
+	public void setActive(boolean active)
+	{
+		this.active=active;
+	}
+	public void setDateOfLaunch(Date dateOfLaunch)
+	{
+		this.dateOfLaunch=dateOfLaunch;
+	}
+	public void setCategory(String category)
+	{
+		this.category=category;
+	}
+	public void setFreedelivery(boolean freeDelivery)
+	{
+		this.freeDelivery=freeDelivery;
+	}
+	
+	public void getId(long id)
+	{
+		return this.id;
+	}
+	public void getName(String name)
+	{
+		return this.name;
+	}
+	public void getPrice(float price)
+	{
+		return this.price;
+	}
+	public void getActive(boolean active)
+	{
+		return this.active;
+	}
+	public void getDateOfLaunch(Date dateOfLaunch)
+	{
+		return this.dateOfLaunch;
+	}
+	public void getCategory(String category)
+	{
+		return this.category;
+	}
+	public void getFreedelivery(boolean freeDelivery)
+	{
+		return this.freeDelivery;
+	}
+}

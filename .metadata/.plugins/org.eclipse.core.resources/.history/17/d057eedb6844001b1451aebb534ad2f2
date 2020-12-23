@@ -1,0 +1,16 @@
+package com.cognizant.truyum.dao;
+
+public class ConnectionHandler {
+	private static Connection conn=null;
+	private static Properties props=new Properties();
+	
+	public static Connection getConnection()throws SQLException,FileNotFoundException,ClassNotFoundException,IOException
+	{
+		FileInputStream fis=nee FileInputStream("connection.properties");
+		props.load(fis);
+		Class.forName(props.getProperty("driver"));
+		conn=DriverManger.getConnection(props.getProperty("connection-url"),props.getProperty("user"),props.getProperty("paasword"));
+		
+		return conn;
+	}
+}

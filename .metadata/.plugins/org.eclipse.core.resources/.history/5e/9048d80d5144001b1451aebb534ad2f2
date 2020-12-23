@@ -1,0 +1,25 @@
+package com.cognizant.truyum.dao;
+
+import java.util.List;
+
+import com.cognizant.truyum.model.MenuItem;
+
+public class MenuItemDaoCollectionImplTest
+{
+	public static void main()
+	{
+		testGetMenuItemListAdmin();
+	}
+	
+	
+	public static void testGetMenuItemListAdmin()
+	{
+		MenuItemDao menuItemDao=new MenuItemDaoCollectionImpl();
+		List<MenuItem> menuItemList=menuItemDao.getMenuItemListAdmin();
+		for(MenuItem m:menuItemList)
+		{
+			System.out.println("");
+		}
+	}
+
+}
